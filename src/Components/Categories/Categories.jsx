@@ -7,7 +7,7 @@ export default function Categories() {
 
   useEffect(() => {
     getCart(); // Call getCart when the component mounts
-  }, []);
+  }, [getCart]);
 
 
     
