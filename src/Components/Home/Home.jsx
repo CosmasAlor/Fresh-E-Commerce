@@ -1,37 +1,22 @@
-import React, { useEffect, useState } from 'react'
-import style from './Home.module.css'
+import React, { useEffect, useContext } from 'react';
+import style from './Home.module.css'; // Ensure your CSS file has the relevant styles
 import Products from '../Products/Products';
-import axios from 'axios'
+import CategorySlider from '../CategorySlider/CategorySlider';
+import MainSlider from '../MainSlider/MainSlider';
+import { CartContext } from '../../Context/CartContext'; // Importing the context
 
 export default function Home() {
-const [products, setProducts] = useState([])
+  const { getCart } = useContext(CartContext); // Accessing getCart from the context
 
+  useEffect(() => {
+    getCart(); // Call getCart when the component mounts
+  }, []);
 
-  async function getRecentProducts() {
-    try {
-      let {data} = await axios.get(`https://ecommerce.routemisr.com/api/v1/products`);
-
-      console.log(data?.data);
-      setProducts(data.data)
-    } catch (error) {
-      console.log(error);
-      
-    }
-    
-  }
-
-useEffect(()=> {
-
-  getRecentProducts()
-}, []);
-    
-  return <>
-    
-    <h1 className="text-3xl py-5">Recent Products</h1>
-
-    <div className="flex flex-wrap justify-center">
-      {products.map((product , index)=> <Products key={index} product={product}/>)}
-    </div>
-  
-  </>
+  return (
+    <>
+      <MainSlider />
+      <CategorySlider />
+      <Products />
+    </>
+  );
 }
