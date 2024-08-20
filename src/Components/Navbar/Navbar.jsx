@@ -19,17 +19,19 @@ export default function Navbar() {
 
   return (
     <>
-      <nav className='bg-gray-200  md:fixed top-0 inset-x-0 py-2 text-center capitalize'>
+      <nav className='bg-gray-200  md:fixed top-0 inset-x-0 py-2 text-center capitalize z-50'>
         <div className="container flex flex-col md:flex-row justify-between items-center text-gray-500">
           <div className='flex flex-col md:flex-row space-x-3'>
-            <img src={logo} width={120} alt="" />
-
+          <NavLink to="">
+              <img src={logo} width={120} alt="" />
+            </NavLink>
             {userData && (
               <ul className='flex flex-col md:flex-row space-x-2'>
                 <li><NavLink to="">Home</NavLink></li>
                 <li><NavLink to="Allproducts">Products</NavLink></li>
                 <li><NavLink to="categories">Categories</NavLink></li>
                 <li><NavLink to="brands">Brands</NavLink></li>
+                <li><NavLink to="wishlist">Wish List</NavLink></li>
               </ul>
             )}
           </div>
@@ -38,7 +40,7 @@ export default function Navbar() {
             <ul className='flex flex-col md:flex-row space-x-2'>
             
               {userData ? (<>
-              
+
                 <li className='relative'><NavLink to="cart"><i className='fa-solid text-3xl text-main fa-cart-shopping'></i></NavLink>
                   <span className='text-white absolute left-1/2 top-[-2px]'>
                     {cart ? cart.numOfCartItems : 0} {/* Display 0 if cart is null */}

@@ -21,7 +21,7 @@ export default function MainSlider() {
     
   return     <>
 
-<div className="flex">
+<div className="flex mt-10 w-full">
   <div className="w-3/4">
   <Slider {...settings}>
       <img src={slide1} alt="" className="h-[400px] w-full " />

@@ -1,8 +1,6 @@
 import axios from "axios";
-
 import { createContext, useState } from "react";
 import toast from "react-hot-toast";
-
 
 export let CartContext =  createContext();
 
@@ -46,7 +44,6 @@ export default function CartContextProvider({children}) {
                 
             );
             setCart(data)
-            console.log(data.data);
             toast.success(data.message,
                 {
                     duration: 2000,
@@ -85,8 +82,7 @@ export default function CartContextProvider({children}) {
             {
                 headers
             });
-            
-            console.log(data.data);
+
             setCart(data);
         } catch (error) {
             console.log(error);
