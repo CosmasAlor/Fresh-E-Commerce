@@ -20,6 +20,9 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import WishList from './Components/WishList/WishList.jsx';
 import WishlistContextProvider from './Context/WishListContext.jsx';
+import ForgetPassword from './Components/ForgetPassword/ForgetPassword.jsx';
+import VerifyCode from './Components/Verify-Code/Verify-Code.jsx';
+import ResetPassword from './Components/Reset-Password/Reset-Password.jsx';
 
 const router = createBrowserRouter([
   {
@@ -37,6 +40,9 @@ const router = createBrowserRouter([
       { path: 'allorders', element: <ProtectRoute><Allorders /></ProtectRoute> },
       { path: 'brands', element: <ProtectRoute><Brands /></ProtectRoute> },
       { path: 'login', element: <Login /> },
+      { path: 'ForgetPassword', element: <ForgetPassword /> },
+      { path: 'verify-code', element: <VerifyCode /> },
+      { path: 'reset-password', element: <ResetPassword /> },
       { path: 'register', element: <Register /> },
       { path: '*', element: <Notfound /> },
     ],
