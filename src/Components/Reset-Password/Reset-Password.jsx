@@ -1,9 +1,8 @@
 import React, { useContext, useState } from 'react';
-import style from './Reset-Password.module.css';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import axios from 'axios';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { UserContext } from '../../Context/UserContext';
 
 export default function ResetPassword() {
@@ -13,34 +12,36 @@ export default function ResetPassword() {
   let navigate = useNavigate();
 
   async function handleResetPassword(values) {
-    console.log(values);
+    console.log('Submitting values:', values); // Ensure this matches {email: '', newPassword: ''}
     try {
       setLoading(true);
       let { data } = await axios.post('https://ecommerce.routemisr.com/api/v1/auth/resetPassword', values);
       
-      localStorage.setItem('userToken', data.token)
+      localStorage.setItem('userToken', data.token);
       setUserData(data.token);
-      console.log(data);
+      
       navigate('/login');
     } catch (error) {
-      setApiError(error.response.data.message);
-      console.log(error);
+      const errorMessage = error.response?.data?.message || 'An unexpected error occurred.';
+      setApiError(errorMessage);
+      console.error('API Error:', error.response?.data); // Log detailed error response
+    
     } finally {
       setLoading(false);
     }
   }
 
-  let validationSchema = Yup.object().shape({
-    email: Yup.string().email('Email invalid').required('Email is required'),
+  const validationSchema = Yup.object().shape({
+    email: Yup.string().email('Invalid email').required('Email is required'),
     newPassword: Yup.string()
       .matches(/^[A-Z]\w{5,10}$/, 'Invalid password. Example: Ahmed123')
       .required('New password is required'),
   });
 
-  let formik = useFormik({
+  const formik = useFormik({
     initialValues: {
-      email: '',
-      newPassword: '',
+      email: '',        // Must be 'email'
+      newPassword: '',  // Must be 'newPassword'
     },
     validationSchema,
     onSubmit: handleResetPassword,

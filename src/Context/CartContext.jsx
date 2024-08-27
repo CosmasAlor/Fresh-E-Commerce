@@ -15,7 +15,7 @@ export default function CartContextProvider({children}) {
     async function checkout(shippingAddress) {
         try {
 
-            let {data} = await axios.post(`https://ecommerce.routemisr.com/api/v1/orders/checkout-session/${cart.data._id}?url=https://fresh-e-commerce.vercel.app/` , 
+            let {data} = await axios.post(`https://ecommerce.routemisr.com/api/v1/orders/checkout-session/${cart.data._id}?url=http://localhost:5173` , 
                 {
                     shippingAddress
                 } , {
@@ -30,7 +30,6 @@ export default function CartContextProvider({children}) {
             
         }
     }
-
 
     async function addProductToCart(productId) {
         try {
@@ -78,17 +77,19 @@ export default function CartContextProvider({children}) {
 
     async function getCart() {
         try {
-            let {data} = await axios.get(`https://ecommerce.routemisr.com/api/v1/cart` , 
-            {
+            let { data } = await axios.get(`https://ecommerce.routemisr.com/api/v1/cart`, {
                 headers
             });
-
+    
             setCart(data);
+            const cartOwner = data.data.cartOwner;
+            return cartOwner; // Return cartOwner so it can be used elsewhere
         } catch (error) {
             console.log(error);
-            
+            return null; // Optionally return null or handle the error as needed
         }
     }
+    
 
 
     async function updateProductCount(productId , count) {
@@ -150,7 +151,7 @@ export default function CartContextProvider({children}) {
     }
 
     return (
-        <CartContext.Provider value={{clearCart , checkout, deleteProduct, updateProductCount,  addProductToCart , getCart , cart , setCart}}>
+        <CartContext.Provider value={{ clearCart , checkout, deleteProduct, updateProductCount,  addProductToCart , getCart , cart , setCart}}>
           {children}
         </CartContext.Provider>
       );

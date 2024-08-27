@@ -8,11 +8,11 @@ import { WishlistContext } from '../../Context/WishListContext';
 
 export default function Home() {
   const { getCart } = useContext(CartContext); // Accessing getCart from the context
-  const { getwishlist } = useContext(WishlistContext); // Accessing getCart from the context
+  const { getWishlist } = useContext(WishlistContext); // Accessing getCart from the context
 
   useEffect(() => {
     getCart();
-    getwishlist() // Call getCart when the component mounts
+    getWishlist() // Call getCart when the component mounts
   }, []);
 
   return (

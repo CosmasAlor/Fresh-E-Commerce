@@ -19,7 +19,6 @@ export default function Login() {
   
   let navigate = useNavigate()
   
-  
   async  function Register(values) {
     try {
       setLoading(true)

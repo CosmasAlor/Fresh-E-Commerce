@@ -1,15 +1,21 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import style from './ProductDetails.module.css';
 import { useParams } from 'react-router-dom';
 import Loading from '../Loading/Loading';
 import Slider from "react-slick";
 import axios from 'axios';
+import { WishlistContext } from '../../Context/WishListContext';
+import { CartContext } from '../../Context/CartContext';
 
 export default function ProductDetails() {
   let { id } = useParams();
   const [productDetails, setProductDetails] = useState({});
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+
+  const { addProductToCart } = useContext(CartContext);
+  const { addWishlist } = useContext(WishlistContext);
+
 
   const settings = {
     dots: false,
@@ -33,23 +39,23 @@ export default function ProductDetails() {
     }
   }
 
-  async function getProductsDetailsCategory(categoryId) {
-    try {
-      let { data } = await axios.get(`https://ecommerce.routemisr.com/api/v1/products/${categoryId}`);
-      setProductDetails(data.data);
-    } catch (error) {
-      setError('Failed to fetch product details');
-    } finally {
-      setLoading(false);
-    }
-  }
+  // async function getProductsDetailsCategory(categoryId) {
+  //   try {
+  //     let { data } = await axios.get(`https://ecommerce.routemisr.com/api/v1/products/${categoryId}`);
+  //     setProductDetails(data.data);
+  //   } catch (error) {
+  //     setError('Failed to fetch product details');
+  //   } finally {
+  //     setLoading(false);
+  //   }
+  // }
 
   useEffect(() => {
     getProductsDetails(id);
   }, [id]);
 
 
-  let categoryId = productDetails.category?.name;
+  // let categoryId = productDetails.category?.name;
   if (loading) {
     return (
       <div className="flex h-screen justify-center items-center">
@@ -85,15 +91,17 @@ export default function ProductDetails() {
             <p className="my-6 text-gray-500">{productDetails.description}</p>
           </div>
           <h2 className={`${style.textMain} text-sm`}>{productDetails.category?.name}</h2>
-          <div className="flex justify-between my-2">
-            <h3>{productDetails.price} EGP</h3>
-            <h3>
-              <i className={`fas fa-star ${style.ratingColor}`}></i> {productDetails.ratingsAverage}
-            </h3>
-          </div>
-          <button className="btn w-full bg-main text-white rounded py-1 px-3 cursor-pointer">
-            Add To Cart
-          </button>
+
+            <div className="flex justify-between my-2">
+                <h3>{productDetails.price} EGP</h3>
+                <div className="flex">
+                  <h3><i onClick={() => addWishlist(productDetails.id)} className='fa-regular fa-heart fa-2x px-2'></i> {productDetails.ratingsAverage}</h3>
+                  <h3><i className='fas fa-star rating-color '></i> </h3>
+                </div>
+              </div>
+            <div className="btn w-full bg-main text-white rounded py-1 px-3" onClick={() => addProductToCart(productDetails.id)}>
+              Add To Cart
+            </div>
         </div>
       </div>
     </>

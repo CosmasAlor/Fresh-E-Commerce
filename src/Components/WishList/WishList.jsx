@@ -5,21 +5,21 @@ import Loading from '../Loading/Loading';
 
 export default function WishList() {
   const { getCart, addProductToCart } = useContext(CartContext);
-  const { getwishlist, wishlist = [], removeFromWishlist } = useContext(WishlistContext);
+  const { getWishlist, wishlist = [], removeFromWishlist } = useContext(WishlistContext);
   const [loading, setLoading] = useState(false); // State to manage loading
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         await getCart();
-        await getwishlist();
+        await getWishlist();
       } catch (error) {
         console.error('Error fetching data:', error);
         // Optionally, handle the error state here
       }
     };
     fetchData();
-  }, [getCart, getwishlist]);
+  }, [getCart, getWishlist]);
 
 
   const handleRemove = async (id) => {

@@ -37,6 +37,7 @@ export default function Products() {
               <h2 className='font-medium'>{product.title.split(' ').slice(0, 2).join(' ')}</h2>
 
             </Link>
+            
             <div className="flex justify-between my-2">
                 <h3>{product.price} EGP</h3>
                 <div className="flex">
