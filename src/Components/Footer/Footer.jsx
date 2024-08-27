@@ -8,8 +8,8 @@ export default function Footer() {
     
   return <>
     
-    <footer className='fixed-bottom py-11'>
-  <div className=" bg-violet-900 pt-9">
+    <footer className=''>
+  <div className=" bg-violet-900 pt-9 fixed-bottom py-11">
     <div className="mx-auto w-full max-w-[1166px] px-4 xl:px-0">
       <div className="flex flex-col justify-between sm:px-[18px] md:flex-row md:px-10">
         <div className="md:w-[316px]">
