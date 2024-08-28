@@ -4,33 +4,28 @@ import style from './Footer.module.css'
 export default function Footer() {
     
   return <>
-    <footer className=''>
-      <div className=" bg-violet-900 pt-9 fixed-bottom py-11">
+    <footer className='fixed-bottom mt-10'>
+      <div className="bg-main pt-9 fixed-bottom py-11">
         <div className="mx-auto w-full max-w-[1166px] px-4 xl:px-0">
           <div className="flex flex-col justify-between sm:px-[18px] md:flex-row md:px-10">
             <div className="md:w-[316px]">
               <h1 className="text-white font-extrabold">
-                <span className="text-rose-600">YOUR</span>LOGO
+              <i className='fa-solid text-1xl text-white fa-cart-shopping pr-2'></i> FRESH CART
               </h1>
               <p className="mt-[18px] text-[15px] font-normal text-white/[80%]">
                 Lorem ipsum dolor sit amet consectetur adipisicing elit. Eos, fugit non. Incidunt dolorum adipisci, tempore asperiores nemo odio facere officiis enim animi placeat eaque nesciunt alias beatae id, at dicta.
               </p>
-              <div className="mt-[18px] flex gap-4">
-                <a className="hover:scale-110" target="_blank" rel="noreferrer" href="#">
-                  <img alt="facebook icon" loading="lazy" width="36" height="36" decoding="async" src="https://www.englishyaari.com/img/facebook.svg" />
-                </a>
-                <a className="hover:scale-110" target="_blank" rel="noreferrer" href="/">
-                  <img alt="linkedin icon" loading="lazy" width="36" height="36" decoding="async" src="https://www.englishyaari.com/img/linkdin.svg" />
-                </a>
-                <a className="hover:scale-110" target="_blank" rel="noreferrer" href="/">
-                  <img alt="instagram icon" loading="lazy" width="36" height="36" decoding="async" src="https://www.englishyaari.com/img/instagram1.svg" />
-                </a>
-                <a className="hover:scale-110" target="_blank" rel="noreferrer" href="#">
-                  <img alt="twitter icon" loading="lazy" width="36" height="36" decoding="async" src="https://www.englishyaari.com/img/twitter.svg" />
-                </a>
-                <a className="hover:scale-110" target="_blank" rel="noreferrer" href="https://www.youtube.com/">
-                  <img alt="youtube icon" loading="lazy" width="36" height="36" decoding="async" src="https://www.englishyaari.com/img/youtube.svg" />
-                </a>
+
+              <div className="mt-[18px] flex gap-4 text-center">
+                <ul className='flex flex-col md:flex-row space-x-2 text-center'>
+                    <li className='space-x-2  text-white '>
+                    <i className='cursor-pointer text-xl fab fa-facebook-f'></i>
+                    <i className='cursor-pointer text-xl fab fa-linkedin-in'></i>
+                    <i className='cursor-pointer text-xl fab fa-youtube'></i>
+                    <i className='cursor-pointer text-xl fab fa-twitter'></i>
+                    <i className='cursor-pointer text-xl fab fa-instagram'></i>
+                  </li>
+                </ul>
               </div>
             </div>
             <div className="md:w-[316px]">
@@ -83,6 +78,7 @@ export default function Footer() {
             </div>
           </div>
         </div>
+        <p className='text-center text-white'> Developed with ❤️ By Cosmas Alor</p>
       </div>
     </footer>
 

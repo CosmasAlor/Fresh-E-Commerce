@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import style from './CategorySlider.module.css';
 import Slider from "react-slick";
 import axios from 'axios';
 
@@ -12,7 +11,33 @@ export default function CategorySlider() {
     slidesToScroll: 1,
     arrows: false,
     autoplay: true,
-    autoplaySpeed: 1000,
+    autoplaySpeed: 2000,
+    responsive: [
+      {
+        breakpoint: 1200, // Large screens (>= 1200px)
+        settings: {
+          slidesToShow: 6,
+        }
+      },
+      {
+        breakpoint: 992, // Medium screens (>= 992px and < 1200px)
+        settings: {
+          slidesToShow: 5,
+        }
+      },
+      {
+        breakpoint: 768, // Small screens (>= 768px and < 992px)
+        settings: {
+          slidesToShow: 4,
+        }
+      },
+      {
+        breakpoint: 576, // Extra small screens (< 768px)
+        settings: {
+          slidesToShow: 2,
+        }
+      }
+    ]
   };
 
   const [categories, setCategories] = useState([]);
@@ -34,16 +59,15 @@ export default function CategorySlider() {
   }, []);
 
   return (
-    <>
-      <h1 className="text-3xl py-5">Category Slider</h1>
+    <div className="container mx-auto px-4 py-8">
       <Slider {...settings}>
         {categories.map((category, index) => (
-          <div key={index} className='my-6'>
-            <img src={category.image} alt={category.name} className="w-full h-[200px]" />
-            <h3>{category.name}</h3>
+          <div key={index} className='flex flex-col items-center my-6 px-2'>
+            <img src={category.image} alt={category.name} className="w-full h-[200px] object-cover mb-2" />
+            <h3 className="text-center text-sm">{category.name}</h3>
           </div>
         ))}
       </Slider>
-    </>
+    </div>
   );
 }

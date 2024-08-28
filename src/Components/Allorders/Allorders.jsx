@@ -23,8 +23,8 @@ export default function Allorders() {
         <Loading />
       </div>
       ) : (
-        <div>
-          <h1>All Orders</h1>
+        <div  className="mb-24  ">
+          <h1  className="text-3xl py-5  " >All Orders</h1>
           <div className="flex flex-wrap justify-center">
             <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
               <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">

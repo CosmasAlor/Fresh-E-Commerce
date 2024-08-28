@@ -1,1 +1,7 @@
-.Categories {}
+.Categories {
+    @media (max-width: 640px) {
+        .mobile-margin {
+          margin: 10%;
+        }
+      }
+}

@@ -17,6 +17,8 @@
 
 body{
     font-family: var(--font-family) !important;
+    margin-top: 50px;
+    background-color: #eff5ef;
 }
 .rating-color
 {

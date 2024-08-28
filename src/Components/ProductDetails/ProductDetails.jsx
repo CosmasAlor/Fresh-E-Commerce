@@ -70,40 +70,55 @@ export default function ProductDetails() {
 
   return (
     <>
-      <h1 className="text-3xl py-5">Product Details</h1>
-      <div className="flex items-center py-10">
-      <div className="w-1/4">
-          {productDetails.images && productDetails.images.length > 1 ? (
-            <Slider {...settings}>
-              {productDetails.images.map((image, index) => (
-                <div key={index}>
-                  <img src={image} alt={`${productDetails.title} image ${index + 1}`} className="w-full" />
-                </div>
-              ))}
-            </Slider>
-          ) : (
-            <img src={productDetails.images?.[0]} alt={productDetails.title} className="w-full" />
-          )}
-        </div>
-        <div className="w-3/4 mx-10">
-          <div>
-            <h2>{productDetails.title}</h2>
-            <p className="my-6 text-gray-500">{productDetails.description}</p>
-          </div>
-          <h2 className={`${style.textMain} text-sm`}>{productDetails.category?.name}</h2>
-
-            <div className="flex justify-between my-2">
-                <h3>{productDetails.price} EGP</h3>
-                <div className="flex">
-                  <h3><i onClick={() => addWishlist(productDetails.id)} className='fa-regular fa-heart fa-2x px-2'></i> {productDetails.ratingsAverage}</h3>
-                  <h3><i className='fas fa-star rating-color '></i> </h3>
-                </div>
-              </div>
-            <div className="btn w-full bg-main text-white rounded py-1 px-3" onClick={() => addProductToCart(productDetails.id)}>
-              Add To Cart
+      
+      <div className="flex flex-col lg:flex-row items-center py-10 w-11/12 lg:w-10/12 mx-auto mt-20">
+  {/* Image Container */}
+  <div className="lg:w-1/4 w-full lg:mr-8 mb-8 lg:mb-0">
+    <div key={productDetails.id} className="w-full rounded-lg border border-gray-200 bg-white p-6 shadow-sm dark:border-gray-700 dark:bg-gray-800">
+      {productDetails.images && productDetails.images.length > 1 ? (
+        <Slider {...settings}>
+          {productDetails.images.map((image, index) => (
+            <div key={index}>
+              <img src={image} alt={`${productDetails.title} image ${index + 1}`} className="w-full" />
             </div>
+          ))}
+        </Slider>
+      ) : (
+        <img src={productDetails.images?.[0]} alt={productDetails.title} className="w-full" />
+      )}
+    </div>
+  </div>
+
+  {/* Details Container */}
+  <div className="lg:w-3/4 w-full">
+    <div key={productDetails.id} className="w-full rounded-lg border border-gray-200 bg-white p-6 shadow-sm dark:border-gray-700 dark:bg-gray-800">
+      <h2 className='font-medium text-lg lg:text-xl'>{productDetails.title.split(' ').slice(0, 10).join(' ')}</h2>
+      <p className="my-2 text-gray-500">{productDetails.description}</p>
+      <span className='text-main text-sm'>{productDetails.category.name}</span>
+      
+      <div className="flex flex-col lg:flex-row lg:justify-between my-2 items-center">
+        <h3 className="text-xl font-semibold">{productDetails.price} EGP</h3>
+        <div className="flex items-center gap-2 mt-2 lg:mt-0">
+          <button onClick={() => addWishlist(productDetails.id)} className="text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-white">
+            <i className='fa-regular fa-heart fa-2x'></i>
+          </button>
+          <p className="text-sm font-medium text-gray-900 dark:text-white">{productDetails.ratingsAverage}</p>
+          <div className="flex items-center">
+            <i className='fas fa-star rating-color'></i>
+          </div>
         </div>
       </div>
+
+      <button 
+        className="w-full bg-main text-white rounded py-1 px-3 mt-2 hover:bg-main-dark focus:outline-none focus:ring-4 focus:ring-main-dark"
+        onClick={() => addProductToCart(productDetails.id)}
+      >
+        Add To Cart
+      </button>
+    </div>
+  </div>
+</div>
+
     </>
   );
 }

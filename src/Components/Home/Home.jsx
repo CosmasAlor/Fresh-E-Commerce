@@ -1,5 +1,5 @@
+// eslint-disable-next-line no-unused-vars
 import React, { useEffect, useContext } from 'react';
-import style from './Home.module.css'; // Ensure your CSS file has the relevant styles
 import Products from '../Products/Products';
 import CategorySlider from '../CategorySlider/CategorySlider';
 import MainSlider from '../MainSlider/MainSlider';

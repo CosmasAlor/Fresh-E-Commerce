@@ -30,31 +30,34 @@ export default function Categories() {
 
   return (
     <>
-
-      <div className="flex flex-wrap justify-center mt-10">
+    <h1 className="text-3xl py-5  ">All Categries</h1>
+      <div className="flex flex-wrap justify-center gap-4 px-4 sm:px-6 lg:px-8"  >
+       
         {categories?.map((category) => (
-          <div key={category._id} className="w-1/3 mb-5">
-            <div className="inner brand p-5 g-4 border-gray-200 border rounded m-5 h-96">
+          <div key={category._id} className="w-full sm:w-1/2  md:w-1/4 lg:w-1/5 mb-5">
+            <div className="inner brand p-5 border-gray-200 border rounded h-64 sm:h-72 lg:h-80 overflow-hidden">
               <Link to="#" onClick={() => setSelectedCategoryId(category._id)}>
                 <img src={category.image} alt={category.name} className="w-full h-full object-cover" />
               </Link>
             </div>
-            <h2 className="font-medium text-center mt-3 p-5">
-              {category.name.split(' ').slice(0, 2).join(' ')}
-            </h2>
+            <div className="title p-6 pt-0 text-center mt-3">
+              <button className="w-full bg-main text-white rounded py-1 px-3 hover:bg-main-dark focus:outline-none focus:ring-4 focus:ring-main-dark" onClick={() => setSelectedCategoryId(category._id)}>
+                {category.name}
+              </button>
+            </div>
           </div>
         ))}
       </div>
 
       {selectedCategoryId && (
-        <div>
+        <div className="mt-10 px-4 sm:px-6 lg:px-8">
           <h2 className="text-2xl py-5 text-center">{selectedCategory?.name}</h2>
-          <div className="flex flex-wrap justify-center">
+          <div className="flex flex-wrap justify-center gap-4">
             {subCategories?.map((subCategory) => (
-              <div key={subCategory._id} className="w-1/3 mb-5">
-                <div className="inner brand g-4 border-gray-200 border rounded m-5">
-                  <h2 className="font-medium text-center mt-3 p-5">
-                    {subCategory.name.split(' ').slice(0, 2).join(' ')}
+              <div key={subCategory._id} className="w-full sm:w-1/2 md:w-1/3 lg:w-1/4 mb-5">
+                <div className="inner brand  border-gray-200 border rounded overflow-hidden">
+                  <h2 className="font-medium text-center  p-3">
+                    {subCategory.name}
                   </h2>
                 </div>
               </div>

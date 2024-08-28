@@ -59,8 +59,8 @@ export default function Navbar() {
   return (
     <>
 
-<nav className="bg-white border-gray-200 py-2.5 dark:bg-gray-900 capitalize z-50 fixed top-0 w-full">
-      <div className="flex flex-wrap items-center justify-between max-w-screen-xl px-4 mx-auto">
+  <nav className="bg-gray-200 border-gray-200 py-7 px-5 dark:bg-gray-900 capitalize z-50 fixed top-0 w-full">
+      <div className="flex flex-wrap items-center justify-between max-w-screen-xl  mx-auto">
         {/* Logo */}
         <NavLink to="/" className="flex items-center">
           <img src={logo} width={150} alt="Logo" />
@@ -108,39 +108,41 @@ export default function Navbar() {
         {/* Menu Container */}
         <div className={`lg:flex lg:items-center lg:justify-between w-full lg:w-auto ${isOpen ? 'block' : 'hidden'}`} id="mobile-menu">
           {/* Navigation Links */}
-          <ul className="flex flex-col lg:flex-row lg:space-x-8 mt-4 lg:mt-0 pr-4">
-            <li>
-              <NavLink to="/" onClick={closeMenu} aria-label="Home">Home</NavLink>
-            </li>
-            <li>
-              <NavLink to="/Allproducts" onClick={closeMenu} aria-label="Products">Products</NavLink>
-            </li>
-            <li>
-              <NavLink to="/categories" onClick={closeMenu} aria-label="Categories">Categories</NavLink>
-            </li>
-            <li>
-              <NavLink to="/brands" onClick={closeMenu} aria-label="Brands">Brands</NavLink>
-            </li>
-            <li>
-              <NavLink to="/wishlist" onClick={closeMenu} aria-label="Wish List">Wish List</NavLink>
-            </li>
-          </ul>
+
+          {userData && (
+                      <ul className="flex flex-col lg:flex-row lg:space-x-8 mt-4 lg:mt-0 pr-4">
+                      <li>
+                        <NavLink to="/" onClick={closeMenu} aria-label="Home">Home</NavLink>
+                      </li>
+                      <li>
+                        <NavLink to="/Allproducts" onClick={closeMenu} aria-label="Products">Products</NavLink>
+                      </li>
+                      <li>
+                        <NavLink to="/categories" onClick={closeMenu} aria-label="Categories">Categories</NavLink>
+                      </li>
+                      <li>
+                        <NavLink to="/brands" onClick={closeMenu} aria-label="Brands">Brands</NavLink>
+                      </li>
+                      <li>
+                        <NavLink to="/wishlist" onClick={closeMenu} aria-label="Wish List">Wish List</NavLink>
+                      </li>
+                    </ul>
+)}
+
 
           {/* User Actions */}
           <div className="flex items-center lg:ml-auto mt-4 lg:mt-0 space-x-2">
             {userData ? (
               <>
-                <NavLink
-                  to="/cart"
-                  onClick={closeMenu}
-                  className="inline-flex items-center text-white bg-purple-700 hover:bg-purple-800 focus:ring-4 focus:ring-purple-300 font-medium rounded-lg text-sm px-4 py-2"
-                  aria-label={`Cart (${cart ? cart.numOfCartItems : 0})`}
+                <NavLink to="/cart" onClick={closeMenu}
+                  className="inline-flex items-center text-white bg-main focus:ring-4 focus:ring-purple-300 font-medium rounded-lg text-sm px-4 py-2"
+                  
                 >
-                  <i className='fa-solid text-1xl text-main fa-cart-shopping'></i> {cart ? cart.numOfCartItems : 0}
+                  <i className='fa-solid text-1xl text-white fa-cart-shopping pr-2'></i> {cart ? cart.numOfCartItems : 0}
                 </NavLink>
                 <span
                   onClick={() => { closeMenu(); logOut(); }}
-                  className="inline-flex items-center text-white bg-purple-700 hover:bg-purple-800 focus:ring-4 focus:ring-purple-300 font-medium rounded-lg text-sm px-4 py-2 cursor-pointer"
+                  className="inline-flex items-center text-white bg-main focus:ring-4 focus:ring-purple-300 font-medium rounded-lg text-sm px-4 py-2 cursor-pointer"
                   aria-label="Logout"
                 >
                   Logout
@@ -151,7 +153,7 @@ export default function Navbar() {
                 <NavLink
                   to="/login"
                   onClick={closeMenu}
-                  className="inline-flex items-center text-white bg-purple-700 hover:bg-purple-800 focus:ring-4 focus:ring-purple-300 font-medium rounded-lg text-sm px-4 py-2"
+                  className="inline-flex items-center text-white bg-main focus:ring-4 focus:ring-purple-300 font-medium rounded-lg text-sm px-4 py-2"
                   aria-label="Login"
                 >
                   Login
@@ -159,7 +161,7 @@ export default function Navbar() {
                 <NavLink
                   to="/register"
                   onClick={closeMenu}
-                  className="inline-flex items-center text-white bg-purple-700 hover:bg-purple-800 focus:ring-4 focus:ring-purple-300 font-medium rounded-lg text-sm px-4 py-2"
+                  className="inline-flex items-center text-white bg-main focus:ring-4 focus:ring-purple-300 font-medium rounded-lg text-sm px-4 py-2"
                   aria-label="Register"
                 >
                   Register
@@ -169,7 +171,7 @@ export default function Navbar() {
           </div>
         </div>
       </div>
-    </nav>
+  </nav>
 
 
 
