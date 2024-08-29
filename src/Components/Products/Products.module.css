@@ -1,1 +1,21 @@
-.Products {}
+/* Ensure you have these classes in your CSS file */
+.text-red-500 {
+    color: red;
+  }
+  
+  .text-main {
+    color: #3490dc; /* Example color for main text */
+  }
+  
+  .bg-main {
+    background-color: #3490dc; /* Example color for main background */
+  }
+  
+  .bg-main-dark {
+    background-color: #2779bd; /* Darker variant of the main color */
+  }
+  
+  .rating-color {
+    color: #ffd700; /* Example color for star ratings */
+  }
+  

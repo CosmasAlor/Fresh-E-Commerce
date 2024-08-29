@@ -9,8 +9,10 @@ import useProducts from '../../Hooks/useProducts';
 export default function Products() {
   const { data, isLoading } = useProducts();
   const { addProductToCart } = useContext(CartContext);
-  const { addWishlist } = useContext(WishlistContext);
+  const { addWishlist , wishlist} = useContext(WishlistContext);
 
+  console.log(wishlist.data);
+  
   if (isLoading) {
     return (
       <div className="flex h-screen justify-center items-center">

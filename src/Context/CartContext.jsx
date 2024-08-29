@@ -170,6 +170,7 @@ export default function CartContextProvider({ children }) {
     };
 
     const [cart, setCart] = useState(null);
+    const [isLoading, setIsLoading] = useState(false);
 
     async function checkout(shippingAddress) {
         try {
@@ -262,6 +263,7 @@ export default function CartContextProvider({ children }) {
         try {
             let { data } = await axios.delete(`https://ecommerce.routemisr.com/api/v1/cart/${productId}`, { headers });
             setCart(data);
+            setIsLoading(true);
             console.log('Deleted product:', data);
         } catch (error) {
             console.log('Delete product error:', error);

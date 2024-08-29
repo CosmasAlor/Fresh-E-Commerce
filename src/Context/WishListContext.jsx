@@ -69,36 +69,73 @@ export default function WishListContextProvider({ children }) {
         }
     }
 
-    // Function to remove a product from the wishlist
+
+
     async function removeFromWishlist(productId) {
-        setIsLoading(true);
-        try {
-            const { data } = await axios.delete(
-                `https://ecommerce.routemisr.com/api/v1/wishlist/${productId}`,
-                getHeaders()
-            );
-            setWishlist((prev) => prev.filter(item => item._id !== productId));
-            toast.success("Item removed from wishlist", {
-                duration: 2000,
-                position: 'top-right',
-                className: 'bg-main',
-                icon: '👏',
-                iconTheme: {
-                    primary: '#000',
-                    secondary: '#fff',
-                },
-                ariaProps: {
-                    role: 'status',
-                    'aria-live': 'polite',
-                },
-            });
-        } catch (error) {
-            console.error('Failed to remove item from wishlist:', error);
-            toast.error("Failed to remove item from wishlist");
-        } finally {
-            setIsLoading(false);
-        }
+    setIsLoading(true);
+    try {
+        const { data } = await axios.delete(
+            `https://ecommerce.routemisr.com/api/v1/wishlist/${productId}`,
+            getHeaders()
+        );
+
+        // Ensure that data.wishlist is an array before updating state
+        setWishlist((prev) => {
+            if (!Array.isArray(prev)) return []; // Fallback if prev is not an array
+            return prev.filter(item => item._id !== productId);
+        });
+
+        toast.success("Item removed from wishlist", {
+            duration: 2000,
+            position: 'top-right',
+            className: 'bg-main',
+            icon: '👏',
+            iconTheme: {
+                primary: '#000',
+                secondary: '#fff',
+            },
+            ariaProps: {
+                role: 'status',
+                'aria-live': 'polite',
+            },
+        });
+    } catch (error) {
+        console.error('Failed to remove item from wishlist:', error);
+        toast.error("Failed to remove item from wishlist");
+    } finally {
+        setIsLoading(false);
     }
+}
+
+    // async function removeFromWishlist(productId) {
+    //     setIsLoading(true);
+    //     try {
+    //         const { data } = await axios.delete(
+    //             `https://ecommerce.routemisr.com/api/v1/wishlist/${productId}`,
+    //             getHeaders()
+                
+    //         ); setWishlist(response.data.wishlist || []); // Ensure it's an array
+    //         setWishlist((prev) => prev.filter(item => item._id !== productId));
+    //         toast.success("Item removed from wishlist", {
+    //             duration: 2000,
+    //             position: 'top-right',
+    //             className: 'bg-main',
+    //             icon: '👏',
+    //             iconTheme: {
+    //                 primary: '#000',
+    //                 secondary: '#fff',
+    //             },
+    //             ariaProps: {
+    //                 role: 'status',
+    //                 'aria-live': 'polite',
+    //             },
+    //         });
+    //     } catch (error) {
+    //         console.error('Failed to remove item from wishlist:', error);
+    //     } finally {
+    //         setIsLoading(false);
+    //     }
+    // }
 
     // Function to update product count in the wishlist
     async function updateProductCount(productId, count) {
