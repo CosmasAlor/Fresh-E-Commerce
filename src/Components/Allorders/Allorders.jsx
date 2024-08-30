@@ -1,10 +1,11 @@
+// eslint-disable-next-line no-unused-vars
 import React from 'react';
 import style from './Allorders.module.css'; // Ensure this path is correct and the file exists
 import Loading from '../Loading/Loading'; // Ensure this path is correct and the component exists
 import useUserOrders from '../../Hooks/UseUserOrders';
 
 export default function Allorders() {
-  const { data, isLoading, error } = useUserOrders(); // Destructure error from useUserOrders
+  const { data, isLoading } = useUserOrders(); // Destructure error from useUserOrders
 
   // Log the state before rendering
   // console.log('Data:', data);
